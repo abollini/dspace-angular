@@ -28,7 +28,6 @@ import { FormBuilderService } from '../../../shared/form/builder/form-builder.se
 import { FormFieldMetadataValueObject } from '../../../shared/form/builder/models/form-field-metadata-value.model';
 import { DynamicQualdropModel } from '../../../shared/form/builder/ds-dynamic-form-ui/models/ds-dynamic-qualdrop.model';
 import { DynamicRelationGroupModel } from '../../../shared/form/builder/ds-dynamic-form-ui/models/relation-group/dynamic-relation-group.model';
-import { deepClone } from 'fast-json-patch';
 import { VocabularyEntryDetail } from '../../../core/submission/vocabularies/models/vocabulary-entry-detail.model';
 
 /**
@@ -252,10 +251,7 @@ export class SectionFormOperationsService {
       fieldValue = new FormFieldMetadataValueObject(value);
     }
 
-    // make a copy of fieldvalue for returning,
-    // so any changes to it can't influence the original.
-    // fixes #817
-    return deepClone(fieldValue);
+    return fieldValue;
   }
 
   /**
